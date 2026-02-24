@@ -1,0 +1,60 @@
+/* Root background */
+.root {
+    -fx-background-color: #f4f4f4;
+    -fx-font-family: Arial;
+}
+
+/* Menu Bar */
+.menu-bar {
+    -fx-background-color: #e3c2a9;
+}
+
+.menu-item:focused {
+    -fx-background-color: #c4a16f;
+}
+
+/* TableView */
+.table-view {
+    -fx-border-color: #b1b1b1;
+}
+
+.table-view .column-header-background {
+    -fx-background-color: #e3c2a9;
+}
+
+.table-row-cell:selected {
+    -fx-background-color: #b1b1b1;
+}
+
+/* Form VBox */
+.form-box {
+    -fx-background-color: #4c9f6e;
+    -fx-background-radius: 10;
+}
+
+/* Labels inside form */
+.form-box .label {
+    -fx-text-fill: white;
+}
+
+/* TextFields */
+.text-field {
+    -fx-padding: 8;
+    -fx-background-radius: 5;
+}
+
+/* Buttons */
+.button {
+    -fx-padding: 10 20;
+    -fx-background-radius: 5;
+    -fx-background-color: brown;
+    -fx-text-fill: black;
+}
+
+.button:hover {
+    -fx-background-color: #d07d40;
+}
+
+.button:pressed {
+    -fx-background-color: #a8612e;
+}
