@@ -5,7 +5,8 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
-
+import javafx.geometry.Pos;
+import javafx.geometry.Insets;
 
 public class Main extends Application {
 
@@ -21,6 +22,7 @@ public class Main extends Application {
 
         menuBar.getMenus().addAll(fileMenu, editMenu, themeMenu, helpMenu);
 
+
         // TableView setup
         TableView<Student> tableView = new TableView<>();
         TableColumn<Student, String> idColumn = new TableColumn<>("ID");
@@ -33,6 +35,7 @@ public class Main extends Application {
         tableView.getColumns().addAll(idColumn, firstNameColumn, lastNameColumn, departmentColumn, majorColumn, emailColumn);
 
         // Form Fields
+        TextField searchField = new TextField();
         TextField lastNameField = new TextField();
         TextField departmentField = new TextField();
         TextField majorField = new TextField();
@@ -44,20 +47,37 @@ public class Main extends Application {
         Button addButton = new Button("Add");
         Button deleteButton = new Button("Delete");
         Button editButton = new Button("Edit");
+        clearButton.setMaxWidth(Double.MAX_VALUE);
+        addButton.setMaxWidth(Double.MAX_VALUE);
+        deleteButton.setMaxWidth(Double.MAX_VALUE);
+        editButton.setMaxWidth(Double.MAX_VALUE);
+
+        lastNameField.setPromptText("Last Name");
+        departmentField.setPromptText("Department");
+        majorField.setPromptText("Major");
+        emailField.setPromptText("Email");
+        imageUrlField.setPromptText("Image URL");
 
         // Layout for Form
-        VBox formLayout = new VBox(10);
+        VBox formLayout = new VBox(5);
         formLayout.getChildren().addAll(
-                new Label("Last Name"), lastNameField,
-                new Label("Department"), departmentField,
-                new Label("Major"), majorField,
-                new Label("Email"), emailField,
-                new Label("Image URL"), imageUrlField,
+                searchField,
+                lastNameField,
+                departmentField,
+                majorField,
+                emailField,
+                imageUrlField,
                 clearButton, addButton, deleteButton, editButton
         );
 
         // Give form VBox a style class
         formLayout.getStyleClass().add("form-box");
+
+        HBox bottomLayout = new HBox();
+        bottomLayout.getStyleClass().add("bottom-box");
+        bottomLayout.setPrefHeight(37);
+
+        VBox.setMargin(clearButton, new Insets(90, 0, 0, 0));
 
 // Center layout (table + form)
         HBox contentLayout = new HBox();
@@ -65,7 +85,9 @@ public class Main extends Application {
 
 // Root layout (menu on top)
         VBox root = new VBox();
-        root.getChildren().addAll(menuBar, contentLayout);
+        root.getChildren().addAll(menuBar, contentLayout, bottomLayout);
+
+        contentLayout.setAlignment(Pos.CENTER_RIGHT);
 
         Scene scene = new Scene(root, 800, 600);
         scene.getStylesheets().add(

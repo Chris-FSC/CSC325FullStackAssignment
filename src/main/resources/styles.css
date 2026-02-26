@@ -1,6 +1,6 @@
 /* Root background */
 .root {
-    -fx-background-color: #f4f4f4;
+    -fx-background-color: #cf9a3d;
     -fx-font-family: Arial;
 }
 
@@ -28,8 +28,13 @@
 
 /* Form VBox */
 .form-box {
-    -fx-background-color: #4c9f6e;
+    -fx-background-color: #17d604;
     -fx-padding: 20;
+    -fx-background-radius: 10;
+}
+
+.bottom-box {
+    -fx-background-color: #5c5757;
     -fx-background-radius: 10;
 }
 
