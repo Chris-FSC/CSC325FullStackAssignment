@@ -7,6 +7,11 @@ import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.geometry.Pos;
 import javafx.geometry.Insets;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 public class Main extends Application {
 
@@ -69,6 +74,12 @@ public class Main extends Application {
                 imageUrlField,
                 clearButton, addButton, deleteButton, editButton
         );
+        Image logo = new Image(getClass().getResourceAsStream("/image.png"));
+        ImageView logoView = new ImageView(logo);
+
+        HBox logoBox = new HBox(logoView);
+        logoBox.setAlignment(Pos.TOP_LEFT);
+        logoBox.setPadding(new Insets(10,10,10,10));
 
         // Give form VBox a style class
         formLayout.getStyleClass().add("form-box");
@@ -81,7 +92,7 @@ public class Main extends Application {
 
 // Center layout (table + form)
         HBox contentLayout = new HBox();
-        contentLayout.getChildren().addAll(tableView, formLayout);
+        contentLayout.getChildren().addAll(logoBox, tableView, formLayout);
 
 // Root layout (menu on top)
         VBox root = new VBox();
@@ -89,7 +100,7 @@ public class Main extends Application {
 
         contentLayout.setAlignment(Pos.CENTER_RIGHT);
 
-        Scene scene = new Scene(root, 800, 600);
+        Scene scene = new Scene(root, 800, 570);
         scene.getStylesheets().add(
                 getClass().getResource("/styles.css").toExternalForm()
         );

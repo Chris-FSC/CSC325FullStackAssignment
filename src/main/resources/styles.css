@@ -6,7 +6,7 @@
 
 /* Menu Bar */
 .menu-bar {
-    -fx-background-color: #e3c2a9;
+    -fx-background-color: #863c06;
 }
 
 .menu-item:focused {
@@ -28,13 +28,13 @@
 
 /* Form VBox */
 .form-box {
-    -fx-background-color: #17d604;
+    -fx-background-color: #26ed11;
     -fx-padding: 20;
     -fx-background-radius: 10;
 }
 
 .bottom-box {
-    -fx-background-color: #5c5757;
+    -fx-background-color: #888080;
     -fx-background-radius: 10;
 }
 
