@@ -15,6 +15,7 @@ import javafx.collections.ObservableList;
 
 public class Main extends Application {
 
+    private ObservableList<Student> studentList;
     @Override
     public void start(Stage primaryStage) {
 
@@ -37,10 +38,17 @@ public class Main extends Application {
         TableColumn<Student, String> majorColumn = new TableColumn<>("Major");
         TableColumn<Student, String> emailColumn = new TableColumn<>("Email");
 
+        idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
+        firstNameColumn.setCellValueFactory(new PropertyValueFactory<>("firstName"));
+        lastNameColumn.setCellValueFactory(new PropertyValueFactory<>("lastName"));
+        departmentColumn.setCellValueFactory(new PropertyValueFactory<>("department"));
+        majorColumn.setCellValueFactory(new PropertyValueFactory<>("major"));
+        emailColumn.setCellValueFactory(new PropertyValueFactory<>("email"));
+
         tableView.getColumns().addAll(idColumn, firstNameColumn, lastNameColumn, departmentColumn, majorColumn, emailColumn);
 
         // Form Fields
-        TextField searchField = new TextField();
+        TextField firstNameField = new TextField();
         TextField lastNameField = new TextField();
         TextField departmentField = new TextField();
         TextField majorField = new TextField();
@@ -57,6 +65,43 @@ public class Main extends Application {
         deleteButton.setMaxWidth(Double.MAX_VALUE);
         editButton.setMaxWidth(Double.MAX_VALUE);
 
+        addButton.setOnAction(e -> {
+            Student newStudent = new Student(
+                    String.valueOf(studentList.size() + 1),
+                    firstNameField.getText(),   // you currently don't have a firstName field
+                    lastNameField.getText(),
+                    departmentField.getText(),
+                    majorField.getText(),
+                    emailField.getText()
+            );
+
+            studentList.add(newStudent);
+
+            lastNameField.clear();
+            departmentField.clear();
+            majorField.clear();
+            emailField.clear();
+        });
+
+        deleteButton.setOnAction(e -> {
+            Student selected = tableView.getSelectionModel().getSelectedItem();
+            if (selected != null) {
+                studentList.remove(selected);
+            }
+        });
+
+        clearButton.setOnAction(e -> {
+            firstNameField.clear();
+            lastNameField.clear();
+            departmentField.clear();
+            majorField.clear();
+            emailField.clear();
+            imageUrlField.clear();
+        });
+
+
+
+        firstNameField.setPromptText("First Name");
         lastNameField.setPromptText("Last Name");
         departmentField.setPromptText("Department");
         majorField.setPromptText("Major");
@@ -66,7 +111,7 @@ public class Main extends Application {
         // Layout for Form
         VBox formLayout = new VBox(5);
         formLayout.getChildren().addAll(
-                searchField,
+                firstNameField,
                 lastNameField,
                 departmentField,
                 majorField,
@@ -108,6 +153,14 @@ public class Main extends Application {
 
         primaryStage.setTitle("FSC CSC325 Full Stack Project");
         primaryStage.setScene(scene);
+
+        studentList = FXCollections.observableArrayList(
+                new Student("1", "John", "Doe", "CS", "Software Engineering", "john@email.com"),
+                new Student("2", "Jane", "Smith", "Math", "Statistics", "jane@email.com")
+        );
+
+        tableView.setItems(studentList);
+
         primaryStage.show();
     }
 
